@@ -4,10 +4,18 @@ import contactsList from "./contacts.json";
 
 function App() {
   const [contacts, setContacts] = useState(contactsList);
+  const handleAddRandom = () => {
+    console.log('clicked');
+    const randomIndex = Math.floor(Math.random() * contacts.length);
+    const randomContact = contacts[randomIndex];
+    setContacts([randomContact, ...contacts]);
+  }
   return (
     <div className="App">
       <h1>IronContacts</h1>
           <div key={contacts.id} className="contact-list">
+            {/* doesn't need to be wrapped in an anonymous function, because you're not passing an argument unlike in delete */}
+            <button onClick={handleAddRandom}>Add Random Contact</button>
           <table>
                 <thead>
                 <tr>
@@ -34,6 +42,7 @@ function App() {
               )
             })}
             </table>
+            
           </div>
     </div>
   );
