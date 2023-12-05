@@ -5,17 +5,36 @@ import contactsList from "./contacts.json";
 function App() {
   const [contacts, setContacts] = useState(contactsList);
   const handleAddRandom = () => {
-    console.log('clicked');
+    /*console.log('clicked');*/
     const randomIndex = Math.floor(Math.random() * contacts.length);
     const randomContact = contacts[randomIndex];
     setContacts([randomContact, ...contacts]);
   }
+
+  const handleSortName  = () => {
+    // const sorted = contacts.name.sort();
+    // console.log(sorted)
+    // setContacts(sorted, ...contacts)
+  }
+
+  const handleSortPopularity = () => {
+
+  }
+
+  const handleDeleteContact = (name) => {
+    console.log("contact removed", name)
+    const filteredContacts = contacts.filter((oneContact) => oneContact.name !== name);
+    setContacts(filteredContacts);
+  }
+  
   return (
     <div className="App">
       <h1>IronContacts</h1>
           <div key={contacts.id} className="contact-list">
             {/* doesn't need to be wrapped in an anonymous function, because you're not passing an argument unlike in delete */}
-            <button onClick={handleAddRandom}>Add Random Contact</button>
+            <button onClick={handleAddRandom}>Add a Random Contact</button>
+            <button onClick={handleSortPopularity}>Sort by popularity</button>
+            <button onClick={handleSortName}>Sort by name</button>
           <table>
                 <thead>
                 <tr>
@@ -24,6 +43,7 @@ function App() {
                   <th>Popularity</th>
                   <th>Won an Oscar</th>
                   <th>Won an Emmy</th>
+                  <th>Actions</th>
                 </tr>
                 </thead>
             {contacts
@@ -37,6 +57,7 @@ function App() {
                     <td>{oneContact.popularity}</td>
                     <td>{oneContact.wonOscar ? "🏆" : ""}</td>
                     <td>{oneContact.wonEmmy ? "🌟" : ""}</td>
+                    <td><button onClick={() => handleDeleteContact(oneContact.name)}>Delete</button></td>
                   </tr>
                 </tbody>
               )
