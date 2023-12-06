@@ -11,17 +11,22 @@ function App() {
     setContacts([randomContact, ...contacts]);
   }
 
-  //not working heehee
   const handleSortName  = () => {
-    const contactName = contacts.name;
-    const sorted = contactName.sort();
+    console.log('clicked');
+    //wasn't working originally because X [...contacts]
+    //.sort actually modifies the original array and React doesn't allow that
+    //to change the value of original array, setContacts is used!
+    //also added localCompare with .sort & that was the ticket
+    const sorted = [...contacts].sort((a, b) => (a.name.localeCompare(b.name)));
     setContacts(sorted)
-    console.log(sorted)
+    // console.log(sorted)
   }
 
   const handleSortPopularity = () => {
-    const ranking = contacts.sort((a, b) => b.popularity - a.popularity);
-      setContacts(ranking, ...contacts);
+    console.log('clicked');
+    // b-a descending, a-b ascending
+    const ranking = [...contacts].sort((a, b) => b.popularity - a.popularity);
+      setContacts(ranking);
   };
     
   const handleDeleteContact = (id) => {
