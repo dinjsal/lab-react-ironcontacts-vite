@@ -11,26 +11,29 @@ function App() {
     setContacts([randomContact, ...contacts]);
   }
 
+  //not working heehee
   const handleSortName  = () => {
-    // const sorted = contacts.name.sort();
-    // console.log(sorted)
-    // setContacts(sorted, ...contacts)
+    const contactName = contacts.name;
+    const sorted = contactName.sort();
+    setContacts(sorted)
+    console.log(sorted)
   }
 
   const handleSortPopularity = () => {
-
-  }
-
-  const handleDeleteContact = (name) => {
-    console.log("contact removed", name)
-    const filteredContacts = contacts.filter((oneContact) => oneContact.name !== name);
+    const ranking = contacts.sort((a, b) => b.popularity - a.popularity);
+      setContacts(ranking, ...contacts);
+  };
+    
+  const handleDeleteContact = (id) => {
+    console.log("contact removed", id)
+    const filteredContacts = contacts.filter((oneContact) => oneContact.id !== id);
     setContacts(filteredContacts);
   }
   
   return (
     <div className="App">
       <h1>IronContacts</h1>
-          <div key={contacts.id} className="contact-list">
+          <div className="contact-list">
             {/* doesn't need to be wrapped in an anonymous function, because you're not passing an argument unlike in delete */}
             <button onClick={handleAddRandom}>Add a Random Contact</button>
             <button onClick={handleSortPopularity}>Sort by popularity</button>
@@ -51,13 +54,13 @@ function App() {
             .map((oneContact) => {
               return (
                 <tbody>
-                  <tr>
+                  <tr key={contacts.id}>
                     <td><img src={oneContact.pictureUrl} alt={oneContact.name} style={{height: "150px"}} /></td>
                     <td>{oneContact.name}</td>
-                    <td>{oneContact.popularity}</td>
+                    <td>{oneContact.popularity.toFixed(2)}</td>
                     <td>{oneContact.wonOscar ? "🏆" : ""}</td>
                     <td>{oneContact.wonEmmy ? "🌟" : ""}</td>
-                    <td><button onClick={() => handleDeleteContact(oneContact.name)}>Delete</button></td>
+                    <td><button onClick={() => handleDeleteContact(oneContact.id)}>Delete</button></td>
                   </tr>
                 </tbody>
               )
