@@ -3,8 +3,8 @@ import { useState } from "react";
 import contactsList from "./contacts.json";
 
 function App() {
-  // contacts = display contacts at any given moment
-  // contactsList = contacts.json imported, all the data
+  // contacts = displayed contacts at any given moment
+  // contactsList = imported contacts.json, all the data
   const [contacts, setContacts] = useState(contactsList.slice(0,5));
   const handleAddRandom = () => {
     /*console.log('clicked');*/
@@ -28,7 +28,7 @@ function App() {
     console.log('clicked');
     // b-a descending, a-b ascending
     const ranking = [...contacts].sort((a, b) => b.popularity - a.popularity);
-      setContacts(ranking);
+    setContacts(ranking);
   };
     
   const handleDeleteContact = (id) => {
