@@ -40,3 +40,42 @@
 .read-the-docs {
   color: #888;
 }
+
+.top-buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.top-buttons > button {
+  margin: 10px 30px;
+}
+
+table {
+  margin-top: 60px;
+  text-align: center;
+  border-width: 5px;
+}
+
+table, th, td {
+  border: 1px solid white;
+  border-collapse: collapse;
+  text-align: center;
+}
+
+th {
+  width: 180px;
+}
+
+h1:hover,  th:hover {
+  color: #646cffaa;
+}
+
+img {
+  padding: 10px 0 5px;
+}
+
+img:hover {
+  transform: scale(1.05);
+}

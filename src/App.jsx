@@ -38,11 +38,13 @@ function App() {
   return (
     <div className="App">
       <h1>IronContacts</h1>
-          <div className="contact-list">
+          <div>
+            <section className="top-buttons">
             {/* doesn't need to be wrapped in an anonymous function, because you're not passing an argument unlike in delete */}
             <button onClick={handleAddRandom}>Add a Random Contact</button>
             <button onClick={handleSortPopularity}>Sort by popularity</button>
             <button onClick={handleSortName}>Sort by name</button>
+            </section>
           <table>
                 <thead>
                 <tr>
