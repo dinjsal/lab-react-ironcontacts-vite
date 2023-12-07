@@ -3,16 +3,18 @@ import { useState } from "react";
 import contactsList from "./contacts.json";
 
 function App() {
-  const [contacts, setContacts] = useState(contactsList);
+  // contacts = display contacts at any given moment
+  // contactsList = contacts.json imported, all the data
+  const [contacts, setContacts] = useState(contactsList.slice(0,5));
   const handleAddRandom = () => {
     /*console.log('clicked');*/
-    const randomIndex = Math.floor(Math.random() * contacts.length);
-    const randomContact = contacts[randomIndex];
+    const randomIndex = Math.floor(Math.random() * contactsList.length);
+    const randomContact = contactsList[randomIndex];
     setContacts([randomContact, ...contacts]);
   }
 
   const handleSortName  = () => {
-    console.log('clicked');
+    // console.log('clicked');
     //wasn't working originally because X [...contacts]
     //.sort actually modifies the original array and React doesn't allow that
     //to change the value of original array, setContacts is used!
@@ -31,6 +33,7 @@ function App() {
     
   const handleDeleteContact = (id) => {
     console.log("contact removed", id)
+    //.filter doesn't modify the original array, so ... spread operator not needed
     const filteredContacts = contacts.filter((oneContact) => oneContact.id !== id);
     setContacts(filteredContacts);
   }
@@ -57,7 +60,7 @@ function App() {
                 </tr>
                 </thead>
             {contacts
-            .slice(0,5)
+            //.map doesn't modify the original array, so ... spread operator not needed
             .map((oneContact) => {
               return (
                 <tbody>
